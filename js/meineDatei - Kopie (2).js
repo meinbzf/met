@@ -3,20 +3,8 @@
 let aktuelleFrage = 0;
 let MAX_FRAGEN = 0;
 let docTitle = document.title;
-if (docTitle.match("Luftrecht"))
-    MAX_FRAGEN = 195;
 if (docTitle.match("Meteorologie"))
     MAX_FRAGEN = 170;
-if (docTitle.match("Navigation"))
-    MAX_FRAGEN = 111;
-if (docTitle.match("Navigations-Aufgabe"))
-    MAX_FRAGEN = 20;
-if (docTitle.match("Technik"))
-    MAX_FRAGEN = 231;
-if (docTitle.match("Menschliches"))
-    MAX_FRAGEN = 70;
-if (docTitle.match("Verhalten"))
-    MAX_FRAGEN = 127;
 
 // 4 Antwortmöglichkeiten, auf die geklickt werden kann
 let radioA;
@@ -60,15 +48,15 @@ function setzeNummer() {
     bootbox.prompt({
         title: "Bitte neue Nummer eingeben:",
         value: "123",
-        callback: function (result) {
+        callback: function(result) {
             if (result === null) {
                 //keine Aktion
             } else {
-                aktuelleFrage = Number(result) - 1;
+                aktuelleFrage = Number(result) - 1; 
                 blaettern(true);
             }
         }
-    });
+      });
     //let meineEingabe = prompt("Bitte neue Nummer eingeben:", "123");
     //aktuelleFrage = Number(meineEingabe) - 1;
     //blaettern(true);
@@ -183,11 +171,11 @@ let myBtnNurGespeicherte = document.getElementById("gespeichert");
 myBtnNurGespeicherte.addEventListener("click", nurGespeicherte);
 function nurGespeicherte() {
     let myData = localStorage.getItem(docTitle);
-    let anzeigeText = "Gespeicherte Fragen für " + docTitle + ": " + myData;
+    let anzeigeText = "Gespeicherte Fragen: " + myData;
     anzeigeText += "<br>Falls Daten nicht gespeichert werden, dann: ";
     anzeigeText += "<br> - Firefox: Einstellungen, Datenschutz, Cookies erlauben, aber nicht zur Verfolgung";
     anzeigeText += "<br> - Chrome: Einstellungen, Datenschutz, Browserdaten löschen, Cookies und Websitedaten zulassen";
-    anzeigeText += "<br>Zusatzinfo zur Verwaltung des lokalen Speichers im Browser unter Win10: F12, dann Application tab (Web-Speicher). Storage section: Local Storage";
+    anzeigeText += "<br>Zusatzinfo zur Verwaltung des lokalen Speichers im Browser: F12, dann Application tab (Web-Speicher). Storage section: Local Storage";
     bootbox.alert(anzeigeText);
     aktuelleFrage = -1; //später erstes Element anzeigen
     modusNurGespeicherteFragen = true;
