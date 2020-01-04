@@ -3,6 +3,8 @@
 let aktuelleFrage = 0;
 let MAX_FRAGEN = 0;
 let docTitle = document.title;
+if (docTitle.match("BZF"))
+    MAX_FRAGEN = 260;
 if (docTitle.match("Luftrecht"))
     MAX_FRAGEN = 195;
 if (docTitle.match("Meteorologie"))
@@ -183,11 +185,11 @@ let myBtnNurGespeicherte = document.getElementById("gespeichert");
 myBtnNurGespeicherte.addEventListener("click", nurGespeicherte);
 function nurGespeicherte() {
     let myData = localStorage.getItem(docTitle);
-    let anzeigeText = "Gespeicherte Fragen für " + docTitle + ": " + myData;
-    anzeigeText += "<br>Falls Daten nicht gespeichert werden, dann: ";
-    anzeigeText += "<br> - Firefox: Einstellungen, Datenschutz, Cookies erlauben, aber nicht zur Verfolgung";
-    anzeigeText += "<br> - Chrome: Einstellungen, Datenschutz, Browserdaten löschen, Cookies und Websitedaten zulassen";
-    anzeigeText += "<br>Zusatzinfo zur Verwaltung des lokalen Speichers im Browser unter Win10: F12, dann Application tab (Web-Speicher). Storage section: Local Storage";
+    let anzeigeText = "<p>Gespeicherte Fragen für " + docTitle + ": " + myData+ "</p>";
+    anzeigeText += "<p>Falls Daten nicht gespeichert werden können oder nach Browser-Neustart verloren sind, dann bitte überprüfen: ";
+    anzeigeText += "<ul> <li>Firefox: Einstellungen, Datenschutz, Cookies erlauben, aber nicht zur Verfolgung</li>";
+    anzeigeText += "<li>Chrome: Einstellungen, Datenschutz, Browserdaten löschen, Cookies und Websitedaten zulassen</li> </ul></p>";
+    anzeigeText += "<p>Technische Zusatzinfo zur Verwaltung des lokalen Speichers im Browser unter Win10: F12, dann Application tab (Web-Speicher). Storage section: Local Storage</p>";
     bootbox.alert(anzeigeText);
     aktuelleFrage = -1; //später erstes Element anzeigen
     modusNurGespeicherteFragen = true;
